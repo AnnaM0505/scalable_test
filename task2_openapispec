@@ -1,0 +1,143 @@
+openapi: 3.0.3
+info:
+  title: Test API
+  description: "Test project for Scalable"
+license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+version: 1.0.11
+paths:
+ /api/external/users:
+  get:
+      summary: Gets users by ID/status
+      parameters:
+        - in: query
+          name: user_id
+          description: Unique user identifier
+          schema:
+            type: string
+            maxLength: 7
+            example: 3453255
+          required: false
+        - in: query
+          name: from
+          description: Pagination start timestamp in nanoseconds
+          schema:
+            type: integer
+          required: false
+        - in: query
+          name: to
+          description: Pagination end timestamp in nanoseconds
+          schema:
+            type: integer
+          required: false
+        - in: query
+          name: limit
+          description: Limit to records returned.
+          schema:
+            type: integer
+            minimum: 10
+            maximum: 1000
+            default: 1000
+          required: false
+        - in: query
+          name: provider_id
+          description: Unique identifier of the partner a user is bound to.
+          schema:
+            type: string
+            maxLength: 4
+            example: 2323
+      responses:
+       '200':
+        description: A User object
+        schema:
+         type: object
+         properties:
+          user_id:
+            type: string
+            description: Unique user identifier
+          provider_id:
+           type: String
+           description: Unique identifier of the partner a user is bound to.
+          status:
+           type: string
+           description: User service state.
+           enum:
+            - active
+            - inactive
+            - signing
+            - idle
+          sub_status:
+           type: string
+           description: User service state.
+           enum:
+            - signed
+            - unsigned
+            - absent
+          type:
+           type: string
+           description: User type.
+           enum:
+            - basic
+            - guest
+            - company
+            - advanced
+            - admin
+          zone:
+           type: String
+           description: Two-letter country code of the region of residence.
+         '404':
+           description: User not found.
+/api/partner:
+ get:
+      summary: Gets providers (partners) by ID/status
+      security:
+        - basicAuth: []
+      parameters:
+        - in: query
+          name: provider_id
+          description: Unique partner identifier.
+          schema:
+            type: string
+            maxLength: 4
+            example: 3453255
+          required: false
+        - in: query
+          name: from
+          description: Pagination start timestamp in nanoseconds
+          schema:
+            type: integer
+          required: false
+        - in: query
+          name: to
+          description: Pagination end timestamp in nanoseconds
+          schema:
+            type: integer
+          required: false
+        - in: query
+          name: status
+          description: Partner operation state.
+          schema:
+            type: String
+            enum:
+            - active
+            - stopped
+      responses:
+       '200':
+       description: A partner object
+       schema:
+         type: object
+         properties:
+          provider_id:
+           type: String
+           description: Unique identifier of the partner a user is bound to.
+          status:
+           type: string
+           description: Partner operation.
+           enum:
+            - active
+            - stopped
+      '401':
+            description: Authorization information is missing or invalid.
+      '404':
+           description: Provider not found.
