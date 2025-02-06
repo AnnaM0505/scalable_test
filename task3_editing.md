@@ -1,4 +1,4 @@
-Plans provide product clients with a predefined set of service options. 
+Plans provide our partner providers with a predefined set of service options. 
 
 Please note that we regularly update the service plan feature and introduce new flows and attributes. Your customer service flow and attributes may undergo changes due to an extensive system update. In the latest update we added new properties. For reference see our [API 1.1 specification](https://github.com/AnnaM0505/scalable_test/blob/main/task2_openapispec).
 One of the major changes is the new *sub_status* user attribute.  This attribute is applied only to users in the *signing* status and depends on whether a user confirmed/declined new service plan purchase.
