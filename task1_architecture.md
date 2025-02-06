@@ -42,4 +42,4 @@ The system provides the following flows for a user:
 
 See the state diagram below: 
 
-![enter image description here](https://github.com/AnnaM0505/scalable_test/blob/main/statediagram_user)
+![State_Diagram_User](https://github.com/AnnaM0505/scalable_test/blob/main/user_state_diagram.png)
