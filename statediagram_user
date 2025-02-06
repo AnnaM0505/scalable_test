@@ -1,0 +1,29 @@
+@startuml
+hide empty description
+!theme = toy 
+
+[*] --> Guest: Signs up
+Guest --> [*]
+Guest: Session limit 20 min
+Guest: Operation limit per day: 5
+Guest: Operation limit per week: 5
+
+Guest --> Idle: Session and operation limit exceeded
+
+Guest-> Basic: KYC 
+Basic: Session limit 20 min
+Basic: Operation limit per day: 20
+Basic: Operation limit per week: 50
+
+Basic--> Idle: Session and operation limit exceeded
+
+Basic-> Advanced: Purchase a service plan
+Advanced: Unlimited operations
+Advanced: Unlimited session
+
+Idle-> Advanced: Purchase a service plan
+
+Guest --> [*]
+Basic --> [*]
+Advanced --> [*]
+@enduml
