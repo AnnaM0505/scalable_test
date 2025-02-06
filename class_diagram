@@ -1,0 +1,51 @@
+@startuml
+!theme toy
+
+class provider{
+ +id
+ +name
+ +status
+ +method1(Provide a service plan)
+ +method2(Configure a service plan)
+ +method3(Delete a service plan)
+}
+
+class user{
+ +id
+ +name
+ +provider_id
+ +type
+ +status
+ +sub_status
+ +method1(Start a new session)
+ +method2(Sign up for a service plan)
+ +method3(Confirm signup)
+ +method4(Become idle)
+}
+
+class user_type{
+ +type_id
+ +type_name 
+}
+
+class service{
+ +id
+ +description
+ +price
+}
+
+class service_plan{
+ +id
+ +description
+ +price
+ +service_ids
+ +method1(Add a service)
+ +method2(Update services)
+ +method3(Delete a service)
+}
+
+service_plan o-- service
+user --> service_plan
+user_type *-- user
+provider --> service_plan
+@enduml
