@@ -1,5 +1,5 @@
 ## System Architecture
-Our payment system leverages service plan management and user management for service providers.
+Our payment system streamlines service plan management and user management for service providers.
 The system implements the following:
 
  - configurable services and service plans for a provider;
